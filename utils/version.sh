@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: BSD-3-Clause
 # Copyright 2017-2022, Intel Corporation
+# Copyright 2026, Hewlett Packard Enterprise Development LP
 #
 # utils/version.sh -- determine project's version
 #
