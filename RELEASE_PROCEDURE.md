@@ -1,19 +1,27 @@
-# PMDK release steps
+# PMDK release procedure
 
-This document contains all the steps required to make a new release of PMDK.
+This document sets out the procedure for making a new release of PMDK. It assumes no other changes will get landed while the release procedure is ongoing. Make sure other team members are aware the release procedure has begun.
+
+**Note**: The procedure assumes you are making a release on the master branch. Please see [branching](#branching) to see why this assumption is in place. If it is not the case please adjust as necessary. 
 
 Export these two variables in your bash with the version of the release you want to create:
 
 ```bash
-export VERSION=2.0.1-rc1   # the full version of the new release; include -rc1 as necessary
-export VER=2.0             # just major.minor of the version
+export VERSION=2.0.1   # the full version of the new release
+export VER=2.0         # just major.minor of the version
 ```
 
-# 1. Validation
+## 1. Validation
 
-Make sure the version of PMDK you want to release has undergone a complete validation cycle successfully.
+Make sure the master branch has undergone a complete validation cycle successfully.
 
-# 2. Changelog
+```mermaid
+%%{init: { 'gitGraph': {'mainBranchName': 'master'} } }%%
+gitGraph
+   commit id: "validated"
+```
+
+## 2. Changelog
 
 Update [ChangeLog](ChangeLog):
 
@@ -25,9 +33,7 @@ git add ChangeLog
 git commit -a -m "common: $VERSION release"
 ```
 
-Create a pull request to the appropriate branch. Please see [branching](#branching).
-
-Review and land as usual.
+Create a pull request to the master branch.  Review and land as usual.
 
 ```mermaid
 %%{init: { 'gitGraph': {'mainBranchName': 'master'} } }%%
@@ -37,12 +43,23 @@ gitGraph
    checkout release-prep
    commit id: "common: 2.1.17 release"
    checkout master
-   merge release-prep id: "merge / squash / rebase"
+   merge release-prep id: "merge"
 ```
 
 **Note**: No validation before or after the landing of this pull request is necessary since it is only a change in ChangeLog.
 
-# 3. Tagging
+It is irrelevant which landing method gatekeeper chooses. Further steps work the same for all of them: "Merge pull request", "Squash and merge", and "Rebase and merge". However, creating a merge commit or landing a slew of commits just to update the ChangeLog is redundant. So it is recommended to end up with something like this:
+
+```mermaid
+%%{init: { 'gitGraph': {'mainBranchName': 'master'} } }%%
+gitGraph
+   commit id: "validated"
+   commit id: "common: 2.1.17 release"
+```
+
+Read more [here](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/about-merge-methods-on-github) to understand available landing methods.
+
+## 3. Tagging
 
 **Note**: It is required to sign the tag to prove the release was authorized (`-s` parameter in the command below).
 
@@ -63,7 +80,7 @@ gitGraph
    commit id: "common: 2.1.17 release" tag: "2.1.17"
 ```
 
-# 4. Release
+## 4. Release
 
 Go to [GitHub's releases tab](https://github.com/daos-stack/pmdk/releases/new) and fill in the form:
 
@@ -89,11 +106,11 @@ gitGraph
    commit id: "2.1.18 release" tag: "2.1.18"
 ```
 
-**Note**: On the stable-$VER branch, bump the version of Docker images (`utils/docker/images/set-images-version.sh`) to $VER.
+**Note**: After branching off remember to set `IMG_VER=stable-X.Y` in [set-images-version.sh](utils/docker/images/set-images-version.sh). Each of the branches ought to maintain its own set of images to prevent creating inter-branch dependencies.
 
 ## GPG
 
-If you require to generate a GPG key follow [these steps](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key).
+To generate a GPG key follow [these steps](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key).
 After that you'd also have to add this new key to your GitHub account - please follow the steps in
 [this guide](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key).
 
