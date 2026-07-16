@@ -6,12 +6,10 @@
 # utils/version.sh -- determine project's version
 #
 set -e
-set -o errtrace
-set -x
 
 cd "$1"
 
-GIT_DESCRIBE=$(git describe --always) && true
+GIT_DESCRIBE=$(git describe --always 2>/dev/null) && true
 if [ -n "$GIT_DESCRIBE" ]; then
 	echo "$GIT_DESCRIBE"
 	exit 0
