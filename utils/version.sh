@@ -6,6 +6,8 @@
 # utils/version.sh -- determine project's version
 #
 set -e
+set -o errtrace
+set -x
 
 cd "$1"
 
