@@ -11,7 +11,7 @@ set -x
 
 cd "$1"
 
-GIT_DESCRIBE=$(git describe 2>/dev/null) && true
+GIT_DESCRIBE=$(git describe) && true
 if [ -n "$GIT_DESCRIBE" ]; then
 	echo "$GIT_DESCRIBE"
 	exit 0
