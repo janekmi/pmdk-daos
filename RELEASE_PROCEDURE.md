@@ -2,7 +2,7 @@
 
 This document sets out the procedure for making a new release of PMDK. It assumes no other changes will get landed while the release procedure is ongoing. Make sure other team members are aware the release procedure has begun.
 
-**Note**: The procedure assumes you are making a release on the master branch. Please see [branching](#branching) to see why this assumption is in place. If it is not the case please adjust as necessary. 
+**Note**: The procedure assumes you are making a release on the master branch. Please see [branching](#branching) to see why this assumption is in place. If it is not the case please adjust as necessary.
 
 Export these two variables in your bash with the version of the release you want to create:
 
