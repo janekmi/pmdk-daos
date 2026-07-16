@@ -1,20 +1,18 @@
 # **PMDK: Persistent Memory Development Kit**
 
-[![Main](https://github.com/pmem/pmdk/actions/workflows/main.yml/badge.svg)](https://github.com/pmem/pmdk/actions/workflows/main.yml)
-[![Nightly](https://github.com/pmem/pmdk/actions/workflows/nightly.yml/badge.svg?branch=master)](https://github.com/pmem/pmdk/actions/workflows/nightly.yml)
-[![Scans](https://github.com/pmem/pmdk/actions/workflows/scans.yml/badge.svg?branch=master)](https://github.com/pmem/pmdk/actions/workflows/scans.yml)
-[![Coverage](https://codecov.io/github/pmem/pmdk/coverage.svg?branch=master)](https://codecov.io/gh/pmem/pmdk/branch/master)
-[![PMem test](https://github.com/pmem/pmdk/actions/workflows/pmem_tests.yml/badge.svg?branch=master)](https://github.com/pmem/pmdk/actions/workflows/pmem_tests.yml)
-[![Pmem RAS](https://github.com/pmem/pmdk/actions/workflows/pmem_ras.yml/badge.svg?branch=master)](https://github.com/pmem/pmdk/actions/workflows/pmem_ras.yml)
-[![Docker rebuild](https://github.com/pmem/pmdk/actions/workflows/docker_rebuild.yml/badge.svg?branch=master)](https://github.com/pmem/pmdk/actions/workflows/docker_rebuild.yml)
+[![Main](https://github.com/daos-stack/pmdk/actions/workflows/main.yml/badge.svg)](https://github.com/daos-stack/pmdk/actions/workflows/main.yml)
+[![Nightly](https://github.com/daos-stack/pmdk/actions/workflows/nightly.yml/badge.svg?branch=master)](https://github.com/daos-stack/pmdk/actions/workflows/nightly.yml)
+[![Scans](https://github.com/daos-stack/pmdk/actions/workflows/scans.yml/badge.svg?branch=master)](https://github.com/daos-stack/pmdk/actions/workflows/scans.yml)
+[![PMem test 1](https://github.com/daos-stack/pmdk/workflows/PMEM%20tests%20part%201/badge.svg)](https://github.com/daos-stack/pmdk/actions/workflows/pmem_tests_1.yml)
+[![PMem test 2](https://github.com/daos-stack/pmdk/workflows/PMEM%20tests%20part%202/badge.svg)](https://github.com/daos-stack/pmdk/actions/workflows/pmem_tests_2.yml)
+[![PMem test 3](https://github.com/daos-stack/pmdk/workflows/PMEM%20tests%20part%203/badge.svg)](https://github.com/daos-stack/pmdk/actions/workflows/pmem_tests_3.yml)
+[![PMem test 4](https://github.com/daos-stack/pmdk/workflows/PMEM%20tests%20part%204/badge.svg)](https://github.com/daos-stack/pmdk/actions/workflows/pmem_tests_4.yml)
 
 The **Persistent Memory Development Kit (PMDK)** is a collection of libraries and tools for System Administrators and Application Developers to simplify managing and accessing persistent memory devices. For more information, see https://pmem.io.
 
-To install PMDK libraries please clone the tree and build it yourself. Specific installation instructions are outlined below.
+The only supported user is the [DAOS Project](https://daos.io/). Bugs and feature requests for PMDK are tracked [here](https://daosio.atlassian.net/issues?jql=component%20%3D%20PMDK%20ORDER%20BY%20created%20DESC). Older known issues can be found [here](https://github.com/pmem/pmdk/issues).
 
-Pre-built packages can be found in popular Linux distribution package repositories but we do not keep them anymore up to date because of the limited resources.
-
-Bugs and feature requests for this repo are tracked in our [GitHub Issues Database](https://github.com/pmem/pmdk/issues).
+PMDK is delivered as part of a DAOS release. If you want to experiment with PMDK without DAOS it is recommended to build it yourself as outlined [below](#building-and-installing). Pre-built packages found in popular Linux distribution package repositories are no longer kept up to date.
 
 ## Contents
 1. [Libraries and Utilities](#libraries-and-utilities)
@@ -59,8 +57,8 @@ Additionally, we recommend reading [Introduction to Programming with Persistent 
 
 ## Version Conventions
 
-- **Release Candidates** have a '-rc{version}' tag, e.g. `0.2-rc3`, meaning _Release Candidate 3 for version 0.2_
-- **Stable Releases** use a _major.minor_ tag like `0.2`
+- **Release Candidates** have a '-rc{version}' tag, e.g. `2.2.0-rc3`, meaning _Release Candidate 3 for version 2.2.0_
+- **Stable Releases** use a _major.minor.patch_ tag like `2.2.0`.
 
 ## Building and installing
 
@@ -68,7 +66,7 @@ Install a few [dependencies](INSTALL.md#dependencies) and then build and install
 
 ```sh
 # get the source code
-git clone https://github.com/pmem/pmdk
+git clone https://github.com/daos-stack/pmdk
 cd pmdk
 # build
 make -j
@@ -109,10 +107,7 @@ information on this port, contact Rajalakshmi Srinivasaraghavan
 
 ## Contact Us
 
-For more information on this library, contact
-Tomasz Gromadzki (tomasz.gromadzki@intel.com),
-Jan Michalski (jan.michalski@intel.com),
-Oksana Sałyk (oksana.salyk@intel.com),
-Piotr Balcer (piotr.balcer@intel.com),
-Andy Rudoff (andy.rudoff@intel.com), or post to
-the [Persistent Memory Programming Google group](https://groups.google.com/group/pmem).
+For more information on this project, contact
+Tomasz Gromadzki (tomasz.gromadzki@hpe.com),
+Jan Michalski (jan-marian.michalski@hpe.com), or
+Oksana Sałyk (oksana.salyk@hpe.com).
